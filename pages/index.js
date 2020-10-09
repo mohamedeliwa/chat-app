@@ -1,5 +1,6 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import { Button } from "react-bootstrap";
+import styles from "../styles/Home.module.scss";
 
 export default function Home() {
   return (
@@ -10,7 +11,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        
+        <Button variant="primary">Join Rooms</Button>{" "}
+        <Button variant="primary">Create Room</Button>
       </main>
 
       <footer className={styles.footer}>
@@ -19,10 +21,10 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
     </div>
-  )
+  );
 }
