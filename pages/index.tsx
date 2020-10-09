@@ -18,10 +18,10 @@ export default function Home() {
           </Form.Group>
           <Form.Group>
             <Button className={styles.roombtn} variant="primary">
-              Join Rooms >
+              Join Rooms..
             </Button>
             <Button className={styles.roombtn} variant="primary">
-              Create Room >
+              Create Room..
             </Button>
           </Form.Group>
         </Form>
