@@ -12,10 +12,17 @@
 
 .main {
   padding: 5rem 0;
+}
+
+.startingForm {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  .roombtn{
-    margin: auto 5px;
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 3rem;
+  .roombtn {
+    margin: 5px 5px;
   }
 }
