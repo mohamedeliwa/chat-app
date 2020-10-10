@@ -41,4 +41,16 @@
       cursor: pointer;
     }
   }
+  @media screen and (min-width: 490px) {
+    width: 60vw;
+  }
+  @media screen and (min-width: 590px) {
+    width: 45vw;
+  }
+  @media screen and (min-width: 800px) {
+    width: 35vw;
+  }
+  @media screen and (min-width: 1000px) {
+    width: 25vw;
+  }
 }
