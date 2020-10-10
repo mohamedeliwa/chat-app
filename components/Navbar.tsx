@@ -5,10 +5,10 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineClose } from "react-icons/ai";
 import styles from "../styles/Navbar.module.scss";
 
-const Navbar = () => {
-  const [state, setState] = useState("open");
+const Navbar: React.FunctionComponent = () => {
+  const [state, setState] = useState<string>("collapse");
 
-  const handleState = (e) => {
+  const handleState = (e: React.MouseEvent) => {
     e.preventDefault();
     setState(state === "open" ? "collapse" : "open");
   };

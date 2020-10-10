@@ -1,6 +1,6 @@
 import  Navbar  from "../components/Navbar"
 
-const Rooms = () => {
+const Rooms: React.FunctionComponent = () => {
   return (
     <div style={{position: 'relative'}}>
       <h1> Hello Roooms</h1>
