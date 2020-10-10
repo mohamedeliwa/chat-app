@@ -1,0 +1,16 @@
+.container {
+  background-color: white;
+  margin: auto 2rem auto 0;
+  height: 90vh;
+  .messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .messages li {
+    padding: 5px 10px;
+  }
+  .messages li:nth-child(odd) {
+    background: #eee;
+  }
+}

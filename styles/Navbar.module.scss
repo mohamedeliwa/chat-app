@@ -1,0 +1,56 @@
+.navbarContainer_collapsed {
+  background-color: grey;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2rem;
+  min-height: 100vh;
+  padding-top: 1.5rem;
+  .burgerbtn {
+    color: #eee;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+  }
+  .nav {
+    display: none;
+  }
+}
+
+.navbarContainer_opened {
+  background-color: grey;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 85vw;
+  height: 100vh;
+  padding-top: 1.5rem;
+  .burgerbtn {
+    color: #eee;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+  }
+  .nav {
+    margin-top: 4rem;
+    .navLink {
+      color: #eee;
+      border: 1px solid rgb(158, 158, 158);
+      cursor: pointer;
+    }
+  }
+  @media screen and (min-width: 490px) {
+    width: 60vw;
+  }
+  @media screen and (min-width: 590px) {
+    width: 45vw;
+  }
+  @media screen and (min-width: 800px) {
+    width: 35vw;
+  }
+  @media screen and (min-width: 1000px) {
+    width: 25vw;
+  }
+}
