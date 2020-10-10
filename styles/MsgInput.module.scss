@@ -1,16 +1,12 @@
 .container {
-    background-color: white;
-    max-width: 100%;
+  background-color: white;
+  max-width: 100%;
 
-    margin: auto 2rem auto 0;
-    // position: relative;
-    // top: 95%;
-    // left: 2rem;
-    .formgrp {
-        background-color: green;
-        // .msgInput {
-            // background-color: red;
-        // }
+  margin: auto 2rem auto 0;
+  .formgrp {
+    margin-top: 5px;
+    .msgInput {
+      border: 2px solid grey;
     }
-
+  }
 }

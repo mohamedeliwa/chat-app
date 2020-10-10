@@ -1,9 +1,14 @@
-import React from "react";
+import styles from "../styles/MsgBoard.module.scss";
 
 const MsgBoard: React.FunctionComponent = () => {
   return (
-    <div>
-      <h1>Message Board</h1>
+    <div className={styles.container}>
+      <ul className={styles.messages}>
+        <li>hello</li>
+        <li>hey</li>
+        <li>how are you ?</li>
+        <li>fine , what about you?</li>
+      </ul>
     </div>
   );
 };
