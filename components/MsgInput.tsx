@@ -4,9 +4,9 @@ import { Form } from "react-bootstrap";
 const MsgInput: React.FunctionComponent = () => {
   return (
     <div className={styles.container}>
-      <Form>
+      <Form id="msgInputForm">
         <Form.Group className={styles.formgrp}>
-          <Form.Control className={styles.msgInput} type="text" placeholder="Enter your message.." />
+          <Form.Control id="msgInputElement" className={styles.msgInput} type="text" placeholder="Enter your message.." />
         </Form.Group>
       </Form>
     </div>
