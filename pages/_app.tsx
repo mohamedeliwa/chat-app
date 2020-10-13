@@ -1,11 +1,18 @@
-import '../styles/globals.scss'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "../styles/globals.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
+import SocketContextProvider, { SocketContext } from "../context/SocketContext";
 
 // import App from "next/app";
-import type { AppProps /*, AppContext */ } from 'next/app'
+import type { AppProps /*, AppContext */ } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <SocketContextProvider>
+        <Component {...pageProps} />
+      </SocketContextProvider>
+    </>
+  );
 }
 
 // Only uncomment this method if you have blocking data requirements for
@@ -20,4 +27,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 //   return { ...appProps }
 // }
 
-export default MyApp
+export default MyApp;
