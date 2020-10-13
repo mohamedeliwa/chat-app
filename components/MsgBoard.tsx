@@ -4,10 +4,10 @@ const MsgBoard: React.FunctionComponent = () => {
   return (
     <div className={styles.container}>
       <ul id="messages" className={styles.messages}>
-        <li>hello</li>
-        <li>hey</li>
-        <li>how are you ?</li>
-        <li>fine , what about you?</li>
+        <li><span>username: </span>hello</li>
+        <li><span>username: </span>hey</li>
+        <li><span>username: </span>how are you ?</li>
+        <li><span>username: </span>fine , what about you?</li>
       </ul>
     </div>
   );
