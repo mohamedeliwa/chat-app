@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
 /**TYPES */
@@ -7,10 +7,9 @@ interface InitialState {
   private: boolean | null;
   socket: SocketIOClient.Socket | null;
 }
-
-let setUsername: (username: string) => void;
-let setPrivateState: (bool: boolean) => void;
-let setSocket: (socket: SocketIOClient.Socket) => void;
+let setUsername: (username: string) => void = (s) => {};
+let setPrivateState: (bool: boolean) => void = (b) => {};
+let setSocket: (socket: SocketIOClient.Socket) => void = (socket) => {};
 /**END OF TYPES */
 
 const initialState: InitialState = {
@@ -21,32 +20,37 @@ const initialState: InitialState = {
 
 export const SocketContext = createContext({
   ...initialState,
-  setUsername: (x: string) => {},
-  setPrivateState: (bool: boolean) => {},
-  setSocket: (socket: SocketIOClient.Socket) => {},
+  setUsername,
+  setPrivateState,
+  setSocket,
 });
 
 const SocketContextProvider: React.FunctionComponent = (props) => {
   const router = useRouter();
   const [state, setState] = useState(initialState);
+  const stateRef = useRef(state);
+  stateRef.current = state;
+
   useEffect(() => {
-    console.log("context: ", state);
+    // console.log("context: ", state);
+    console.log("ref: ", stateRef.current);
   }, [state]);
-  setUsername = (username) => {
+
+  setUsername = (username: string) => {
     setState({
-      ...state,
+      ...stateRef.current,
       username,
     });
   };
   setPrivateState = (bool: boolean) => {
     setState({
-      ...state,
+      ...stateRef.current,
       private: bool,
     });
   };
   setSocket = (socket: SocketIOClient.Socket) => {
     setState({
-      ...state,
+      ...stateRef.current,
       socket,
     });
   };
