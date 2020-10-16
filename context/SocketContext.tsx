@@ -93,7 +93,7 @@ const SocketContextProvider: React.FunctionComponent = (props) => {
   };
   return (
     <SocketContext.Provider
-      value={{ ...state, setUsername, setPrivateState, setSocket }}
+      value={{ ...state, setUsername, setUsers, setPrivateState, setSocket }}
     >
       {props.children}
     </SocketContext.Provider>
