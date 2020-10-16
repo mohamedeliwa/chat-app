@@ -59,7 +59,11 @@ const SocketContextProvider: React.FunctionComponent = (props) => {
         console.log(msg);
       });
       socket.on("update users", (users: User[]) => {
-        setUsers(users);
+        console.log(users);
+        setState({
+          ...stateRef.current,
+          users,
+        });
       });
     });
   };
