@@ -25,7 +25,7 @@ export default function Home() {
     router.push("/rooms");
   };
   useEffect(() => {
-    console.log(socketContextState.username);
+    // console.log(socketContextState.username);
   }, []);
   return (
     <div className={styles.container}>

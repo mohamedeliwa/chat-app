@@ -3,18 +3,25 @@ import { useRouter } from "next/router";
 import io from "socket.io-client";
 
 /**TYPES */
+interface User {
+  id: string;
+  name: string;
+}
 interface InitialState {
   username: string | null;
+  users: User[];
   private: boolean | null;
   socket: SocketIOClient.Socket | null;
 }
 let setUsername: (username: string) => void = (s) => {};
+let setUsers: (users: User[]) => void = (a) => {};
 let setPrivateState: (bool: boolean) => void = (b) => {};
 let setSocket: (socket: SocketIOClient.Socket) => void = (socket) => {};
 /**END OF TYPES */
 
 const initialState: InitialState = {
   username: null,
+  users: [],
   private: null,
   socket: null,
 };
@@ -22,6 +29,7 @@ const initialState: InitialState = {
 export const SocketContext = createContext({
   ...initialState,
   setUsername,
+  setUsers,
   setPrivateState,
   setSocket,
 });
@@ -44,6 +52,15 @@ const SocketContextProvider: React.FunctionComponent = (props) => {
         ...stateRef.current,
         socket,
       });
+      //sending username
+      socket.emit("chat join", stateRef.current.username);
+      // recieving confirmation on join the room successfully
+      socket.on("success", (msg: string) => {
+        console.log(msg);
+      });
+      socket.on("update users", (users: User[]) => {
+        setUsers(users);
+      });
     });
   };
 
@@ -54,6 +71,14 @@ const SocketContextProvider: React.FunctionComponent = (props) => {
     });
     connectSocket();
   };
+
+  setUsers = (users: User[]) => {
+    setState({
+      ...stateRef.current,
+      users,
+    });
+  };
+
   setPrivateState = (bool: boolean) => {
     setState({
       ...stateRef.current,
