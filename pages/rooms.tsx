@@ -14,33 +14,8 @@ const Rooms: React.FunctionComponent = () => {
   const router = useRouter();
   const socketContextState = useContext(SocketContext);
   useEffect(() => {
-    // console.log(router.query);
+    console.log(router.query);
   });
-  // useEffect(() => {
-  //     const socket = io("http://localhost:5000/");
-
-  //     socket.on("connect", () => {
-  //       // console.log(socket); // true
-  //       socketContextState.setSocket(socket);
-  //     });
-
-  //     const form = document.querySelector("#msgInputForm") as HTMLFormElement;
-  //     const input = document.querySelector(
-  //       "#msgInputElement"
-  //     ) as HTMLInputElement;
-  //     const messages = document.querySelector("#messages") as HTMLUListElement;
-  //     form.onsubmit = function (e) {
-  //       e.preventDefault();
-  //       socket.emit("chat message", input.value);
-  //       input.value = "";
-  //       return false;
-  //     };
-  //     socket.on("chat message", function (msg: string) {
-  //       const message = document.createElement("li");
-  //       message.innerText = msg;
-  //       messages.append(message);
-  //     });
-  // }, []);
   return (
     <div className={styles.container}>
       <Head>
