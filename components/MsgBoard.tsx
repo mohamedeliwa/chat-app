@@ -7,12 +7,14 @@ const MsgBoard: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (socket) {
-      socket.on("chat message", function (msg: string) {
+      socket.on("chat message", function (msg: string, name: string) {
+        const empytChatMsg = document.querySelector("#empty-chat") as HTMLLIElement;
+        empytChatMsg.style.display = "none";
         const messages = document.querySelector(
           "#messages"
         ) as HTMLUListElement;
         const message = document.createElement("li");
-        message.innerHTML = `<span>${username}: </span>${msg}`
+        message.innerHTML = `<span>${name}: </span>${msg}`;
         messages.append(message);
       });
     }
@@ -20,18 +22,7 @@ const MsgBoard: React.FunctionComponent = () => {
   return (
     <div className={styles.container}>
       <ul id="messages" className={styles.messages}>
-        <li>
-          <span>username: </span>hello
-        </li>
-        <li>
-          <span>username: </span>hey
-        </li>
-        <li>
-          <span>username: </span>how are you ?
-        </li>
-        <li>
-          <span>username: </span>fine , what about you?
-        </li>
+        <li id="empty-chat">Chat is Empty..!</li>
       </ul>
     </div>
   );
