@@ -17,6 +17,7 @@ let setUsername: (username: string, privateRoom: boolean) => void = (s) => {};
 let setUsers: (users: User[]) => void = (a) => {};
 let setPrivateState: (bool: boolean) => void = (b) => {};
 let setSocket: (socket: SocketIOClient.Socket) => void = (socket) => {};
+let joinPrivateRoom: (username: string, roomID: string) => void = (u, i) => {};
 /**END OF TYPES */
 
 const initialState: InitialState = {
@@ -32,6 +33,7 @@ export const SocketContext = createContext({
   setUsers,
   setPrivateState,
   setSocket,
+  joinPrivateRoom,
 });
 
 const SocketContextProvider: React.FunctionComponent = (props) => {
@@ -52,7 +54,6 @@ const SocketContextProvider: React.FunctionComponent = (props) => {
         ...stateRef.current,
         socket,
       });
-      console.log("hey mohamed: ", privateRoom);
       if (privateRoom) {
         //sending username
         socket.emit("private room create", stateRef.current.username);
@@ -82,6 +83,23 @@ const SocketContextProvider: React.FunctionComponent = (props) => {
           });
         });
       }
+    });
+  };
+
+  joinPrivateRoom = (username: string, roomID: string) => {
+    console.log(username, roomID);
+    const socket = io("http://localhost:5000/");
+    socket.on("connect", () => {
+      setState({
+        ...stateRef.current,
+        username,
+        private: true,
+        socket,
+      });
+      socket.emit("private room join", roomID, username);
+      socket.on("success", (msg: string) => {
+        console.log(msg);
+      });
     });
   };
 
@@ -115,7 +133,14 @@ const SocketContextProvider: React.FunctionComponent = (props) => {
   };
   return (
     <SocketContext.Provider
-      value={{ ...state, setUsername, setUsers, setPrivateState, setSocket }}
+      value={{
+        ...state,
+        setUsername,
+        setUsers,
+        setPrivateState,
+        setSocket,
+        joinPrivateRoom,
+      }}
     >
       {props.children}
     </SocketContext.Provider>

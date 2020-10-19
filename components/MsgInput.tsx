@@ -5,14 +5,20 @@ import { SocketContext } from "../context/SocketContext";
 
 const MsgInput: React.FunctionComponent = () => {
   const [state, setState] = useState("");
-  const { socket } = useContext(SocketContext);
+  const { socket, private: privateRoom, username } = useContext(SocketContext);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setState(e.target.value);
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (socket) socket.emit("chat message", state);
+    if (socket) {
+      if (privateRoom) {
+        socket.emit("chat message", state, username);
+      } else {
+        socket.emit("chat message", state);
+      }
+    }
     setState("");
   };
   return (

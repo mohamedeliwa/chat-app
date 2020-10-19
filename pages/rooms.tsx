@@ -14,7 +14,19 @@ const Rooms: React.FunctionComponent = () => {
   const router = useRouter();
   const socketContextState = useContext(SocketContext);
   useEffect(() => {
-    console.log(router.query);
+    if (router.query.id && !socketContextState.socket) {
+      let username = prompt("what's your name?", "anonymous");
+      let roomID: string;
+      if (!username) username = "anonymous";
+      if (Array.isArray(router.query.id)) {
+        roomID = router.query.id[0];
+      } else {
+        roomID = router.query.id;
+      }
+      socketContextState.joinPrivateRoom(username, roomID);
+    } else if (!router.query.id && !socketContextState.socket) {
+      // router.push("/");
+    }
   });
   return (
     <div className={styles.container}>
