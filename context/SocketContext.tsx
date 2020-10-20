@@ -101,7 +101,9 @@ const SocketContextProvider: React.FunctionComponent = (props) => {
         console.log(msg);
       });
       socket.on("chat message", function (msg: string, name: string) {
-        const empytChatMsg = document.querySelector("#empty-chat") as HTMLLIElement;
+        const empytChatMsg = document.querySelector(
+          "#empty-chat"
+        ) as HTMLLIElement;
         empytChatMsg.style.display = "none";
         const messages = document.querySelector(
           "#messages"

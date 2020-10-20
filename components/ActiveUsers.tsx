@@ -6,19 +6,23 @@ import { ListGroup } from "react-bootstrap";
 import { SocketContext } from "../context/SocketContext";
 
 const ActiveUsers: React.FunctionComponent = () => {
-  const {users} = useContext(SocketContext);
+  const { users } = useContext(SocketContext);
   const [state, setState] = useState<string>("collapse");
-  
+
   const handleState = (e: React.MouseEvent) => {
     e.preventDefault();
     setState(state === "open" ? "collapse" : "open");
   };
 
-  const usersList = !users ? null : users.map(user => {
-    return (
-      <ListGroup.Item id={user.id} key={user.id} className={styles.user}>{user.name}</ListGroup.Item>
-    )
-  })
+  const usersList = !users
+    ? null
+    : users.map((user) => {
+        return (
+          <ListGroup.Item id={user.id} key={user.id} className={styles.user}>
+            {user.name}
+          </ListGroup.Item>
+        );
+      });
   return (
     <div
       className={

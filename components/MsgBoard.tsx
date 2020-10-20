@@ -7,8 +7,11 @@ const MsgBoard: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (socket) {
+      // listening for "chat message event, to append the newly coming message to the board"
       socket.on("chat message", function (msg: string, name: string) {
-        const empytChatMsg = document.querySelector("#empty-chat") as HTMLLIElement;
+        const empytChatMsg = document.querySelector(
+          "#empty-chat"
+        ) as HTMLLIElement;
         empytChatMsg.style.display = "none";
         const messages = document.querySelector(
           "#messages"
