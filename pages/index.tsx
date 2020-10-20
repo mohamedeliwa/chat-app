@@ -27,9 +27,9 @@ export default function Home() {
     /**Update Context here */
     socketContextState.setUsername(state.username, true);
   };
-  useEffect(() => {
-    // console.log(socketContextState.username);
-  }, []);
+  // useEffect(() => {
+  //   // console.log(socketContextState.username);
+  // }, []);
   return (
     <div className={styles.container}>
       <Head>

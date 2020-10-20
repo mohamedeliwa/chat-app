@@ -42,10 +42,10 @@ const SocketContextProvider: React.FunctionComponent = (props) => {
   const stateRef = useRef(state);
   stateRef.current = state;
 
-  useEffect(() => {
-    console.log("context: ", state);
-    // console.log("ref: ", stateRef.current);
-  }, [state]);
+  // useEffect(() => {
+  //   console.log("context: ", state);
+  //   // console.log("ref: ", stateRef.current);
+  // }, [state]);
 
   const connectSocket: (privateRoom: boolean) => void = (privateRoom) => {
     const socket = io("http://localhost:5000/");
@@ -62,7 +62,7 @@ const SocketContextProvider: React.FunctionComponent = (props) => {
           router.push(`/rooms?id=${socket.id}`);
         });
         socket.on("update users", (users: User[]) => {
-          console.log(users);
+          // console.log(users);
           setState({
             ...stateRef.current,
             users,
@@ -76,7 +76,7 @@ const SocketContextProvider: React.FunctionComponent = (props) => {
           router.push("/rooms");
         });
         socket.on("update users", (users: User[]) => {
-          console.log(users);
+          // console.log(users);
           setState({
             ...stateRef.current,
             users,
@@ -87,7 +87,7 @@ const SocketContextProvider: React.FunctionComponent = (props) => {
   };
 
   joinPrivateRoom = (username: string, roomID: string) => {
-    console.log(username, roomID);
+    // console.log(username, roomID);
     const socket = io("http://localhost:5000/");
     socket.on("connect", () => {
       setState({
