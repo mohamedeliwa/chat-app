@@ -14,33 +14,20 @@ const Rooms: React.FunctionComponent = () => {
   const router = useRouter();
   const socketContextState = useContext(SocketContext);
   useEffect(() => {
-    // console.log(router.query);
+    if (router.query.id && !socketContextState.socket) {
+      let username = prompt("what's your name?", "anonymous");
+      let roomID: string;
+      if (!username) username = "anonymous";
+      if (Array.isArray(router.query.id)) {
+        roomID = router.query.id[0];
+      } else {
+        roomID = router.query.id;
+      }
+      socketContextState.joinPrivateRoom(username, roomID);
+    } else if (!router.query.id && !socketContextState.socket) {
+      // router.push("/");
+    }
   });
-  // useEffect(() => {
-  //     const socket = io("http://localhost:5000/");
-
-  //     socket.on("connect", () => {
-  //       // console.log(socket); // true
-  //       socketContextState.setSocket(socket);
-  //     });
-
-  //     const form = document.querySelector("#msgInputForm") as HTMLFormElement;
-  //     const input = document.querySelector(
-  //       "#msgInputElement"
-  //     ) as HTMLInputElement;
-  //     const messages = document.querySelector("#messages") as HTMLUListElement;
-  //     form.onsubmit = function (e) {
-  //       e.preventDefault();
-  //       socket.emit("chat message", input.value);
-  //       input.value = "";
-  //       return false;
-  //     };
-  //     socket.on("chat message", function (msg: string) {
-  //       const message = document.createElement("li");
-  //       message.innerText = msg;
-  //       messages.append(message);
-  //     });
-  // }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -49,8 +36,9 @@ const Rooms: React.FunctionComponent = () => {
       </Head>
       <MsgBoard />
       <MsgInput />
-      <ActiveUsers />
-      {router.query.id ? <ShareRoom /> : <Navbar />}
+      {socketContextState.private ? null : <ActiveUsers />}
+      {/* {router.query.id ? <ShareRoom /> : <Navbar />} */}
+      {router.query.id ? <ShareRoom /> : null}
     </div>
   );
 };

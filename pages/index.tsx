@@ -21,12 +21,15 @@ export default function Home() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     /**Update Context here */
-    socketContextState.setUsername(state.username);
-    router.push("/rooms");
+    socketContextState.setUsername(state.username, false);
   };
-  useEffect(() => {
-    // console.log(socketContextState.username);
-  }, []);
+  const createPrivateRoom = () => {
+    /**Update Context here */
+    socketContextState.setUsername(state.username, true);
+  };
+  // useEffect(() => {
+  //   // console.log(socketContextState.username);
+  // }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -48,7 +51,11 @@ export default function Home() {
             <Button className={styles.roombtn} variant="primary" type="submit">
               Join Rooms..
             </Button>
-            <Button className={styles.roombtn} variant="primary" onClick={() => socketContextState.setPrivateState(false)}>
+            <Button
+              className={styles.roombtn}
+              variant="primary"
+              onClick={createPrivateRoom}
+            >
               Create Room..
             </Button>
           </Form.Group>
