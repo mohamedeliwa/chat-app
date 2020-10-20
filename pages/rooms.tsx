@@ -36,7 +36,7 @@ const Rooms: React.FunctionComponent = () => {
       </Head>
       <MsgBoard />
       <MsgInput />
-      <ActiveUsers />
+      {socketContextState.private ? null : <ActiveUsers />}
       {router.query.id ? <ShareRoom /> : <Navbar />}
     </div>
   );
